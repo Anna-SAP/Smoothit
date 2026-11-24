@@ -6,7 +6,7 @@ on:
   pull_request:
     paths: ['ios/**', 'capacitor.config.ts', '.github/workflows/ios.yml']
   push:
-    branches: [main, 'claude/**']
+    branches: [main]
     paths: ['ios/**', 'capacitor.config.ts', '.github/workflows/ios.yml']
   workflow_dispatch:
 
