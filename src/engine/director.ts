@@ -39,6 +39,8 @@ export interface Direction {
     keySide: number;
     yawDeg: number;
     pitchDeg: number;
+    /** Mean linear luminance of the frame as captured. */
+    sceneLin: number;
   };
 }
 
@@ -118,7 +120,7 @@ export function faceExposureStops(skinLum: number, scleraLum: number, skinHi = 0
   let stops = 0.8 * Math.log2(target / skinLum);
   if (skinHi > 0) stops = Math.min(stops, Math.log2(0.6 / skinHi));
   if (clipped > 0.08) stops = Math.max(stops, -0.3);
-  return clamp(stops, -0.8, 1.5);
+  return clamp(stops, -0.8, 2.0);
 }
 
 export class Director {
@@ -229,7 +231,7 @@ export class Director {
     const wb: [number, number, number] = [this.wb[0] * warm, this.wb[1], this.wb[2] / warm];
     // Noise guard: a strong digital push amplifies sensor noise, so ease off sharpening and core
     // the finest detail levels.
-    const push = smoothstep(0.5, 1.5, exposure);
+    const push = smoothstep(0.5, 1.6, exposure);
     const params: RenderParams = {
       face: faceData,
       skin: {
@@ -262,6 +264,7 @@ export class Director {
         exposureStops: exposure, wb, distanceMm: face?.distanceMm ?? 0, lightContrast: light.contrast,
         lightSide: light.side, lightElevation: light.elevation, relightNeed: relightNeed(light), keySide: this.keySide,
         yawDeg: ((face?.yaw ?? 0) * 180) / Math.PI, pitchDeg: ((face?.pitch ?? 0) * 180) / Math.PI,
+        sceneLin: an.sceneLin,
       },
     };
   }
