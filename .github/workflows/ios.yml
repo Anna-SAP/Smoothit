@@ -5,6 +5,9 @@ name: iOS build
 on:
   pull_request:
     paths: ['ios/**', 'capacitor.config.ts', '.github/workflows/ios.yml']
+  push:
+    branches: [main, 'claude/**']
+    paths: ['ios/**', 'capacitor.config.ts', '.github/workflows/ios.yml']
   workflow_dispatch:
 
 concurrency:
