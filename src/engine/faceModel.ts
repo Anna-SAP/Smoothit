@@ -13,6 +13,11 @@ import {
 export const IRIS_DIAMETER_MM = 11.7;
 /** Focal length in pixels as a fraction of the frame's long side for a ~24 mm-equivalent front camera. */
 export const FRONT_CAMERA_FOCAL_PER_LONG_SIDE = 0.693;
+/**
+ * The mean surface normal of a level face points slightly downward (forehead slope, underside of
+ * nose and chin). Measured on MediaPipe's canonical face model; added back to report true pitch.
+ */
+const MEAN_NORMAL_PITCH_BIAS = 0.133;
 
 export interface FaceGeometry {
   /** Frame size the pixel coordinates refer to. */
@@ -162,7 +167,7 @@ export function buildFaceGeometry(lm: ArrayLike<number>, width: number, height: 
     mx += normals[i]; my += normals[i + 1]; mz += normals[i + 2];
   }
   const yaw = Math.atan2(mx, mz);
-  const pitch = Math.atan2(my, Math.hypot(mx, mz));
+  const pitch = Math.atan2(my, Math.hypot(mx, mz)) + MEAN_NORMAL_PITCH_BIAS;
   const roll = Math.atan2(cB[1] - cA[1], cB[0] - cA[0]);
 
   // Iris size -> metric distance. Only present when the model outputs the 10 iris landmarks.

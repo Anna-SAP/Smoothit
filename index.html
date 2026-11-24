@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#0c0b0b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Smoothit" />
+    <meta name="description" content="Smoothit — 一键拍出影楼级自拍" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="./icons/icon-180.png" />
+    <title>Smoothit</title>
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="top">
+        <div class="brand" aria-label="Smoothit">Smoothit</div>
+        <button class="chip-btn" id="softlight" type="button"></button>
+      </header>
+
+      <main class="stage">
+        <div class="finder" id="finder">
+          <canvas id="view"></canvas>
+          <div class="hint" id="hint" role="status" aria-live="polite"></div>
+          <div class="veil" id="veil"></div>
+          <pre class="debug" id="debug" hidden></pre>
+        </div>
+      </main>
+
+      <nav class="looks" id="looks" aria-label="Looks"></nav>
+
+      <footer class="controls">
+        <button class="thumb" id="galleryBtn" type="button" aria-label="Gallery"></button>
+        <button class="shutter" id="shutter" type="button" aria-label="Shutter"><span></span></button>
+        <button class="round" id="flip" type="button" aria-label="Switch camera">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9a8.5 8.5 0 0 1 15.2-3.2M20 15a8.5 8.5 0 0 1-15.2 3.2" />
+            <path d="M19.6 2.6v3.6H16M4.4 21.4v-3.6H8" />
+          </svg>
+        </button>
+      </footer>
+
+      <div class="flash" id="flash"></div>
+
+      <section class="boot" id="boot">
+        <div class="boot-inner">
+          <div class="brand big">Smoothit</div>
+          <p id="bootText"></p>
+          <div class="bar"><i id="bootBar"></i></div>
+          <button class="primary" id="bootRetry" type="button" hidden></button>
+        </div>
+      </section>
+
+      <section class="review" id="review" hidden>
+        <div class="review-top">
+          <button class="round ghost" id="reviewClose" type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+          <span class="tag" id="reviewTag"></span>
+          <button class="round ghost" id="reviewDelete" type="button" aria-label="Delete">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" /></svg>
+          </button>
+        </div>
+        <div class="review-photo"><img id="reviewImg" alt="" draggable="false" /></div>
+        <div class="review-actions">
+          <button class="ghost-btn" id="reviewCompare" type="button"></button>
+          <button class="primary" id="reviewSave" type="button"></button>
+          <button class="ghost-btn" id="reviewShare" type="button"></button>
+        </div>
+      </section>
+
+      <section class="sheet" id="gallery" hidden>
+        <div class="review-top">
+          <button class="round ghost" id="galleryClose" type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+          <span class="tag" id="galleryTitle"></span>
+          <span style="width:44px"></span>
+        </div>
+        <div class="grid" id="galleryGrid"></div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
