@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smoothit Lab</title>
+    <style>
+      body { margin: 0; padding: 16px; background: #111; color: #ddd; font: 13px/1.5 ui-monospace, monospace; }
+      .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+      canvas { max-width: 46vw; height: auto; background: #000; }
+      pre { white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <p>
+      Smoothit Lab — runs a still image through the exact capture pipeline.
+      <input id="file" type="file" accept="image/*" />
+      <select id="look"></select>
+    </p>
+    <div class="row"><canvas id="before"></canvas><canvas id="after"></canvas></div>
+    <pre id="log"></pre>
+    <script type="module" src="/src/lab.ts"></script>
+  </body>
+</html>

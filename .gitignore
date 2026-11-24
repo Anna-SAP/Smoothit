@@ -1,0 +1,16 @@
+node_modules/
+dist/
+public/models/
+public/wasm/
+*.local
+.DS_Store
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/app/src/main/assets/public/
+android/capacitor-cordova-android-plugins/
+ios/App/App/public/
+ios/App/Pods/
+ios/DerivedData/
+test-results/
